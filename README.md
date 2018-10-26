@@ -1,5 +1,5 @@
 # youtube-channel-manager
-nodejs server &amp; client react application to interact with your youtube channel
+Nodejs server &amp; client react application to interact with your youtube channel
 
 (By default, everyone has a channel on youtube using google login)
 
