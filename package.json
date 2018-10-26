@@ -1,0 +1,18 @@
+{
+  "name": "you-app",
+  "version": "1.0.0",
+  "description": "nodejs server & client react application to interact with your youtube channel",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "youtube"
+  ],
+  "author": "Devilla",
+  "license": "ISC",
+  "dependencies": {
+    "google-auth-library": "^2.0.0",
+    "googleapis": "^34.0.0"
+  }
+}
