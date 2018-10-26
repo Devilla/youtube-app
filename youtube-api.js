@@ -7,8 +7,8 @@ var OAuth2 = google.auth.OAuth2;
 // at ~/.credentials/youtube-nodejs-quickstart.json
 var SCOPES = ['https://www.googleapis.com/auth/youtube.readonly'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '/.credentials/';
-var TOKEN_PATH = TOKEN_DIR + 'youtube-nodejs-quickstart.json';
+    process.env.USERPROFILE) + '/credentials/';
+var TOKEN_PATH = TOKEN_DIR + 'youtube.json';
 
 // Load client secrets from a local file.
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
@@ -29,7 +29,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  console.log("Content is here : ", credentials );
+  // console.log("Content is here : ", credentials );
   var clientSecret = credentials.web.client_secret;
   var clientId = credentials.web.client_id;
   var redirectUrl = credentials.web.redirect_uris[0];
@@ -71,6 +71,10 @@ function getNewToken(oauth2Client, callback) {
         console.log('Error while trying to retrieve access token', err);
         return;
       }
+      console.log("***********");
+      console.log("ACCESS_TOKEN : ",token);
+      console.log("***********");
+
       oauth2Client.credentials = token;
       storeToken(token);
       callback(oauth2Client);
