@@ -16,6 +16,7 @@ Any user of the system should ideally be able to change the credentials of the Y
 
 ## API Specs:
 API's between React Client and Node server uses GraphQL.
+
 API's between Node server and YouTube data API use REST.
-Link:
-https://developers.google.com/youtube/v3/quickstart/nodejs
+
+Link:https://developers.google.com/youtube/v3/quickstart/nodejs
