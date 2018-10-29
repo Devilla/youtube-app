@@ -9,12 +9,17 @@
     "test": "test"
   },
   "keywords": [
-    "youtube"
+    "youtube",
+    "graphql"
   ],
   "author": "Devilla",
   "license": "ISC",
   "dependencies": {
+    "dev": "^0.1.3",
     "google-auth-library": "^2.0.0",
-    "googleapis": "^34.0.0"
+    "googleapis": "^34.0.0",
+    "mongodb": "^2.1.18",
+    "nodemon": "^1.18.5",
+    "pg": "^6.0.1"
   }
 }
