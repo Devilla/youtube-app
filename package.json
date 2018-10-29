@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node youtube-insert-api.js",
+    "update" : "node youtube-update-api.js",
     "test": "test"
   },
   "keywords": [

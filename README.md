@@ -3,8 +3,9 @@ Nodejs server &amp; client react application to interact with your youtube chann
 
 
 ## Commands:
-### 1. npm install - To install dependencies.
-### 2. npm start - To run project and upload video.
+## 1. npm install - To install dependencies.
+## 2. npm start - To run project and upload video.
+## 3. npm run update - To Update Video Fields such as title, description and video privacy settings.
 ## Application Specs:
 It allows uploading a video to youtube channel (https://developers.google.com/youtube/v3/docs/videos/insert).
 
