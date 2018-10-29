@@ -1,9 +1,9 @@
 var fs = require('fs');
 var readline = require('readline');
-var util = require('util');
 var {google} = require('googleapis');
-// var googleAuth = require('google-auth-library');
+var googleAuth = require('google-auth-library');
 var OAuth2 = google.auth.OAuth2;
+
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/google-apis-nodejs-quickstart.json
@@ -20,16 +20,14 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   }
   // Authorize a client with the loaded credentials, then call the YouTube API.
   //See full code sample for authorize() function code.
-authorize(JSON.parse(content), {'params': {'part': 'snippet,status'}, 'properties': {'snippet.categoryId': '22',
+authorize(JSON.parse(content), {'params': {'part': 'snippet,status'}, 'properties': {'id': 'k12SKt794YU',
+                 'snippet.categoryId': '22',
                  'snippet.defaultLanguage': '',
-                 'snippet.description': 'Description of uploaded video.',
+                 'snippet.description': 'Test video.',
                  'snippet.tags[]': '',
-                 'snippet.title': 'Test 3',
-                 'status.embeddable': '',
-                 'status.license': '',
-                 'status.privacyStatus': 'private',
-                 'status.publicStatsViewable': ''
-      }, 'mediaFilename': 'sample_video.flv'}, videosInsert);
+                 'snippet.title': 'Test 2.1',
+                 'status.privacyStatus': 'public'
+      }}, videosUpdate);
 
 });
 
@@ -45,7 +43,7 @@ function authorize(credentials, requestData, callback) {
   var clientId = credentials.web.client_id;
   var redirectUrl = credentials.web.redirect_uris[0];
 //   var auth = new googleAuth();
-  var oauth2Client =  new OAuth2(clientId, clientSecret, redirectUrl);
+  var oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl);
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, function(err, token) {
@@ -164,39 +162,16 @@ function createResource(properties) {
 }
 
 
-function videosInsert(auth, requestData) {
+function videosUpdate(auth, requestData) {
   var service = google.youtube('v3');
   var parameters = removeEmptyParameters(requestData['params']);
   parameters['auth'] = auth;
-  parameters['media'] = { body: fs.createReadStream(requestData['mediaFilename']) };
-  parameters['notifySubscribers'] = false;
   parameters['resource'] = createResource(requestData['properties']);
-  var req = service.videos.insert(parameters, function(err, data) {
+  service.videos.update(parameters, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
+      return;
     }
-    if (data) {
-       console.log(util.inspect(data, false, null));
-    }
-    process.exit();
+    console.log(response);
   });
-
-  var fileSize = fs.statSync(requestData['mediaFilename']).size;
-  // show some progress
-if(req){
-    var id = setInterval(function () {
-        var uploadedBytes = req.req.connection._bytesDispatched;
-        var uploadedMBytes = uploadedBytes / 1000000;
-        var progress = uploadedBytes > fileSize
-            ? 100 : (uploadedBytes / fileSize) * 100;
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
-        process.stdout.write(uploadedMBytes.toFixed(2) + ' MBs uploaded. ' +
-           progress.toFixed(2) + '% completed.');
-        if (progress === 100) {
-          process.stdout.write('Done uploading, waiting for response...');
-          clearInterval(id);
-        }
-      }, 250);
-}
 }
