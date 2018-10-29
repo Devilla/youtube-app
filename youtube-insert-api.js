@@ -29,7 +29,7 @@ authorize(JSON.parse(content), {'params': {'part': 'snippet,status'}, 'propertie
                  'status.license': '',
                  'status.privacyStatus': 'private',
                  'status.publicStatsViewable': ''
-      }, 'mediaFilename': 'sample_video.flv'}, videosInsert);
+      }, 'mediaFilename': 'video.mp4'}, videosInsert);
 
 });
 
