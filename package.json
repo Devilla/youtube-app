@@ -15,15 +15,14 @@
   "author": "Devilla",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "google-auth-library": "^2.0.0",
     "googleapis": "^34.0.0",
     "graphql": "^14.0.2",
+    "lodash": "^4.17.11",
     "mongodb": "^2.1.18",
     "pg": "^6.0.1"
-  },
-  "devDependencies": {
-    "eslint": "^5.8.0"
   }
 }
