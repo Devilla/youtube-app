@@ -12,8 +12,24 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
       <div id="main">
-      <h1>Upload Video</h1>
+      <h1>Youtube Channel Maneger</h1>
+      <h3>Upload Video</h3>
       <input type="file"/>
+      <input type="submit"/>
+      <br/>
+      <hr/>
+      <br/>
+      <h3>Update Video details</h3>
+      <input type="text"
+      placeholder="Enter unique video ID"/>
+      <input type="text"
+      placeholder="Enter title"/>
+      <input type="text"
+      placeholder="Enter description"/>
+      <input type="text"
+      placeholder="Enter video privacy"/>
+      <input type="submit"/>
+      <hr/>
       </div>
       </ApolloProvider>
     );

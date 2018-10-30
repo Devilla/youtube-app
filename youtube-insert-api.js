@@ -12,6 +12,7 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'google-apis-nodejs-quickstart.json';
 
+var videoname = 'sample_vodeo.flv';
 // Load client secrets from a local file.
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   if (err) {
@@ -29,7 +30,7 @@ authorize(JSON.parse(content), {'params': {'part': 'snippet,status'}, 'propertie
                  'status.license': '',
                  'status.privacyStatus': 'private',
                  'status.publicStatsViewable': ''
-      }, 'mediaFilename': 'video.mp4'}, videosInsert);
+      }, 'mediaFilename': `${videoname}`}, videosInsert);
 
 });
 
