@@ -1,30 +1,12 @@
 const graphql = require('graphql');
 const _ = require('lodash');
+const Video = require('../models/video');
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema
 } = graphql;
 
-//Dummy data
-var books = [
-  {name:'The legend of bhagat singh', genre:'patriotic', id:'1'},
-  {name: 'Harry Porter', genre:'Magic,action', id:'2'},
-  {name: 'The Hound of BaskerVille', genre:'Mystery, Detective Fiction', id:'3'}
-];
-
-var videos = [
-  {title:'The legend of bhagat singh', description:'patriotic',privacy:'public', id:'k12SKt794YU'},
-];
-
-const BookType = new GraphQLObjectType({
-  name: 'Book',
-  fields: () => ({
-    id: {type: GraphQLString},
-    name: {type: GraphQLString},
-    genre: {type: GraphQLString}
-  })
-});
 
 const VideoType = new GraphQLObjectType({
   name: 'Video',
@@ -35,22 +17,39 @@ const VideoType = new GraphQLObjectType({
     privacy: {type: GraphQLString}
   })
 });
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    book: {
-      type: BookType,
-      args:{ id: {type: GraphQLString}},
-      resolve(parent, args){
-        // code to get data from api sources
-      return _.find(books, {id:args.id});
-      }
-    },
-    video: {
+    videos: {
       type: VideoType,
       args:{ id: {type: GraphQLString}},
       resolve(parent,args){
-        return _.find(videos, {id:args.id});
+        return Video.findById(args.id);
+      }
+    }
+  }
+});
+
+const Mutation = new GraphQLObjectType({
+  name:'Mutation',
+  fields: {
+    addVideo:{
+      type: VideoType,
+      args:{
+        id: {type: GraphQLString},
+        title: {type: GraphQLString},
+        description: {type: GraphQLString},
+        privacy: {type: GraphQLString}
+      },
+      resolve(parent, args){
+        let video = new Video({
+          id: args.videoId,
+          title: args.title,
+          description: args.description,
+          privacy: args.privacy
+        });
+        return video.save();
       }
     }
   }
@@ -58,5 +57,6 @@ const RootQuery = new GraphQLObjectType({
 
 
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutation
 });
