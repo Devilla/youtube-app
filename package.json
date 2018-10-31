@@ -4,7 +4,8 @@
   "description": "nodejs server & client react application to interact with your youtube channel",
   "main": "index.js",
   "scripts": {
-    "start": "node youtube-insert-api.js",
+    "start": "app.js",
+    "insert": "node youtube-insert-api.js",
     "update": "node youtube-update-api.js",
     "test": "test"
   },

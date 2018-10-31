@@ -3,11 +3,9 @@ var readline = require('readline');
 var {google} = require('googleapis');
 var googleAuth = require('google-auth-library');
 var OAuth2 = google.auth.OAuth2;
-const Video = require('./models/video');
+// const Video = require('./models/video');
 
-// Video.findOne({}, {}, { sort: { 'created_at' : 1 } }, function(err, post) {
-//   console.log( post );
-// });
+
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/google-apis-nodejs-quickstart.json

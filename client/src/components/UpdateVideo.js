@@ -6,8 +6,8 @@ let title="No title";
 let description = "NO Description";
 let privacy = "private";
 let getQuery = gql`
-mutation{
-  addVideo(id: "${id}", title:"${title}", description: "${description}", privacy: "${privacy}")
+{
+  videos(id: "5bd8e92a1198b038fae308a8")
   {
     title
     description
