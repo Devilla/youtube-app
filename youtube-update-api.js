@@ -3,7 +3,11 @@ var readline = require('readline');
 var {google} = require('googleapis');
 var googleAuth = require('google-auth-library');
 var OAuth2 = google.auth.OAuth2;
+const Video = require('./models/video');
 
+// Video.findOne({}, {}, { sort: { 'created_at' : 1 } }, function(err, post) {
+//   console.log( post );
+// });
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/google-apis-nodejs-quickstart.json
@@ -20,7 +24,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   }
   // Authorize a client with the loaded credentials, then call the YouTube API.
   //See full code sample for authorize() function code.
-authorize(JSON.parse(content), {'params': {'part': 'snippet,status'}, 'properties': {'id': 'k12SKt794YU',
+authorize(JSON.parse(content), {'params': {'part': 'snippet,status'}, 'properties': {'id': 'Azt2rCBYrJw',
                  'snippet.categoryId': '22',
                  'snippet.defaultLanguage': '',
                  'snippet.description': 'Test video.',
