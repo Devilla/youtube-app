@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
-let id = "5bd8ee8dce53da3cf2eece76";
-let title;
-let description;
-let privacy;
+let id = "asdasdsd";
+let title="No title";
+let description = "NO Description";
+let privacy = "private";
 let getQuery = gql`
 mutation{
-  addVideo(id: "5bd8ee8dce53da3cf2eece76", title:"Good Morning", description: "NOthing", privacy: "public")
+  addVideo(id: "${id}", title:"${title}", description: "${description}", privacy: "${privacy}")
   {
     title
     description
@@ -19,15 +19,20 @@ mutation{
 
 class UpdateVideo extends Component {
 
+  handlechange = (e) =>{
+    e.target.id = e.target.value;
+    console.log(id,title,description,privacy);
+  }
+
   render(){
     console.log(this.props);
     return (
       <div>
       <h3>Update Video details</h3>
-      <input type="text" placeholder="Enter unique video ID" onChange={(e)=>{id=e.target.value}}/>
-      <input type="text" placeholder="Enter title"  onChange={(e)=>{title=e.target.value}}/>
-      <input type="text" placeholder="Description" onChange={(e)=>{description=e.target.value}}/>
-      <input type="text" placeholder="Video privacy (public/private)" onChange={(e)=>{privacy=e.target.value}}/>
+      <input id="id" type="text" placeholder="Enter unique video ID" onChange={this.handlechange}/>
+      <input id="title" type="text" placeholder="Enter title"  onChange={(e)=>{title=e.target.value}}/>
+      <input id="description" type="text" placeholder="Description" onChange={(e)=>{description=e.target.value}}/>
+      <input id="privacy" type="text" placeholder="Video privacy (public/private)" onChange={(e)=>{privacy=e.target.value}}/>
       <input type="submit"/>
       </div>
     );
