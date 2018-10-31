@@ -1,39 +1,37 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
-const getBooksQuery = gql`
-{
-  book(id:"1")
+let id = "5bd8ee8dce53da3cf2eece76";
+let title;
+let description;
+let privacy;
+let getQuery = gql`
+mutation{
+  addVideo(id: "5bd8ee8dce53da3cf2eece76", title:"Good Morning", description: "NOthing", privacy: "public")
   {
-    name
+    title
+    description
+    privacy
+    id
   }
 }
 `
 
 class UpdateVideo extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      videoID : "k12SKt794YU",
-      videoTitle : "",
-      videoDescription : "",
-      videoPrivacy : ""
-    };
-  }
+
   render(){
-    const { videoID , videoTitle, videoDescription,videoPrivacy } = this.state;
     console.log(this.props);
     return (
       <div>
       <h3>Update Video details</h3>
-      <input type="text" placeholder="Enter unique video ID" value={videoID}/>
-      <input type="text" placeholder="Enter title" value={videoTitle}/>
-      <input type="text" placeholder="Enter description" value={videoDescription}/>
-      <input type="text" placeholder="Enter video privacy public/private" value={videoPrivacy}/>
+      <input type="text" placeholder="Enter unique video ID" onChange={(e)=>{id=e.target.value}}/>
+      <input type="text" placeholder="Enter title"  onChange={(e)=>{title=e.target.value}}/>
+      <input type="text" placeholder="Description" onChange={(e)=>{description=e.target.value}}/>
+      <input type="text" placeholder="Video privacy (public/private)" onChange={(e)=>{privacy=e.target.value}}/>
       <input type="submit"/>
       </div>
     );
   }
 }
 
-export default graphql(getBooksQuery)(UpdateVideo);
+export default graphql(getQuery)(UpdateVideo);
