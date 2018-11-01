@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
 import { graphql, compose } from 'react-apollo';
-let id = "asdasdsd";
-let title="No title";
-let description = "NO Description";
-let privacy = "private";
 const getQuery = gql`
 {
   videos(id: "5bd8e92a1198b038fae308a8")
@@ -18,8 +14,8 @@ const getQuery = gql`
 `
 
 const addMutationQuery = gql`
-mutation {
- addVideo(id: "",title:"", description:"", privacy:"")
+mutation($id: String!, $title: String!, $description: String!, $privacy: String!) {
+ addVideo(id: $id, title: $title, description: $description, privacy: $privacy)
  {
    title
    description
@@ -31,10 +27,25 @@ mutation {
 
 class UpdateVideo extends Component {
 
+constructor(props){
+  super(props);
+  this.state = {
+    id: "",
+    title: "",
+    description: "",
+    privacy: ""
+  };
+}
+
   handlechange = (e) =>{
-    e.target.id = e.target.value;
-    console.log(id,title,description,privacy);
-    this.props.addMutationQuery();
+    this.props.addMutationQuery({
+      variables: {
+        id: this.state.id,
+        title: this.state.title,
+        description: this.state.description,
+        privacy: this.state.privacy
+      }
+    });
   }
 
   render(){
@@ -42,11 +53,11 @@ class UpdateVideo extends Component {
     return (
       <div>
       <h3>Update Video details</h3>
-      <input id="id" type="text" placeholder="Enter unique video ID" onChange={this.handlechange}/>
-      <input id="title" type="text" placeholder="Enter title"  onChange={(e)=>{title=e.target.value}}/>
-      <input id="description" type="text" placeholder="Description" onChange={(e)=>{description=e.target.value}}/>
-      <input id="privacy" type="text" placeholder="Video privacy (public/private)" onChange={(e)=>{privacy=e.target.value}}/>
-      <input type="submit"/>
+      <input id="id" type="text" placeholder="Enter unique video ID" onChange={(e)=>{this.setState({id: e.target.value})}}/>
+      <input id="title" type="text" placeholder="Enter title"  onChange={(e)=>{this.setState({title: e.target.value})}}/>
+      <input id="description" type="text" placeholder="Description" onChange={(e)=>{this.setState({description: e.target.value})}}/>
+      <input id="privacy" type="text" placeholder="Video privacy (public/private)" onChange={(e)=>{this.setState({privacy: e.target.value})}}/>
+      <input type="submit" onClick={this.handlechange}/>
       </div>
     );
   }
