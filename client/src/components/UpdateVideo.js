@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 let id = "asdasdsd";
 let title="No title";
 let description = "NO Description";
 let privacy = "private";
-let getQuery = gql`
+const getQuery = gql`
 {
   videos(id: "5bd8e92a1198b038fae308a8")
   {
@@ -17,11 +17,24 @@ let getQuery = gql`
 }
 `
 
+const addMutationQuery = gql`
+mutation {
+ addVideo(id: "",title:"", description:"", privacy:"")
+ {
+   title
+   description
+   privacy
+   id
+ }
+}
+`
+
 class UpdateVideo extends Component {
 
   handlechange = (e) =>{
     e.target.id = e.target.value;
     console.log(id,title,description,privacy);
+    this.props.addMutationQuery();
   }
 
   render(){
@@ -39,4 +52,7 @@ class UpdateVideo extends Component {
   }
 }
 
-export default graphql(getQuery)(UpdateVideo);
+export default compose(
+  graphql(getQuery, {name: "getQuery"}),
+  graphql(addMutationQuery, {name: "addMutationQuery"})
+)(UpdateVideo);
