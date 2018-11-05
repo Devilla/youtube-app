@@ -6,7 +6,6 @@ var OAuth2 = google.auth.OAuth2;
 // const Video = require('./models/video');
 
 
-
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/google-apis-nodejs-quickstart.json
 var SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']

@@ -4,7 +4,8 @@
   "description": "nodejs server & client react application to interact with your youtube channel",
   "main": "index.js",
   "scripts": {
-    "start": "app.js",
+    "start": "node /app.js",
+    "upload": "node UploadFile.js",
     "insert": "node youtube-insert-api.js",
     "update": "node youtube-update-api.js",
     "test": "test"
@@ -16,9 +17,11 @@
   "author": "Devilla",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
+    "formidable": "^1.2.1",
     "google-auth-library": "^2.0.0",
     "googleapis": "^34.0.0",
     "graphql": "^14.0.2",
